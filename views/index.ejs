@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIML 06 LIB</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+    
+</head>
+<body>
+    <h1>AIML 06 LIB</h1>
+
+    <div class="form-container">
+        <form action="/add" method="POST" enctype="multipart/form-data">
+            <label for="libElement">LIB元素組成:</label>
+            <input type="text" id="libElement" name="libElement" required>
+
+            <label for="crystalType">晶體型態:</label>
+            <input type="text" id="crystalType" name="crystalType" required>
+
+            <label for="score">分數:</label>
+            <input type="number" id="score" name="score" step="0.1" required>
+
+            <label for="doiCode">DOI編碼:</label>
+            <input type="text" id="doiCode" name="doiCode" required>
+
+            <label for="image">圖片:</label>
+            <input type="file" id="image" name="image" accept="image/*">
+
+            <button type="submit">新增資料</button>
+        </form>
+    </div>
+
+    <h2>現有資料</h2>
+    <table>
+        <tr>
+            <th>LIB元素組成</th>
+            <th>晶體型態</th>
+            <th>分數</th>
+            <th>DOI編碼</th>
+            <th>圖片</th>
+        </tr>
+        <% materials.forEach(material => { %>
+        <tr>
+            <td><%= material.libElement %></td>
+            <td><%= material.crystalType %></td>
+            <td><%= material.score %></td>
+            <td><%= material.doiCode %></td>
+            <td>
+                <% if (material.image) { %>
+                    <img src="/uploads/<%= material.image %>" alt="Image">
+                <% } %>
+            </td>
+        </tr>
+        <% }) %>
+    </table>
+</body>
+</html>
